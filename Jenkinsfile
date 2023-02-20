@@ -23,7 +23,7 @@ pipeline {
 
         stage ('Clone repro') {
             steps {
-                sh 'checkout scm'
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/georgekcibi/spring-boot-jsp-jenkins.git'
             }
         }
 
