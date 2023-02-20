@@ -44,7 +44,7 @@ pipeline {
             steps {
                 sh '''
                   cd /var/lib/jenkins/workspace/Pipeline
-                  version=$(perl -nle 'print "$1" if /<version>(v\\d+\\.\\d+\\.\\d+)<\\/version>/' pom.xml)'
+                  version=$(perl -nle 'print "$1" if /<version>(v\\d+\\.\\d+\\.\\d+)<\\/version>/' pom.xml)
                   export JENKINS_NODE_COOKIE=dontKillMe && /usr/bin/java -jar -Dserver.port=8082 target/news-${version}.jar &
                '''
             }       
