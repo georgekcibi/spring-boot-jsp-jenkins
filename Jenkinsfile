@@ -51,5 +51,15 @@ pipeline {
 
         }
     }
+ 
+    post {
+        success {
+            slackSend(channel: "#jenkins", message: "Pipeline deployed successfully!", color: "good")
+        }
+
+        failure {
+            slackSend(channel: "#jenkins", message: "Pipeline failed to deploy.", color: "danger")
+        }
+    }
 
 }
