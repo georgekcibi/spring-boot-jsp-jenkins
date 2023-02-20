@@ -1,9 +1,15 @@
 pipeline {
     agent {
-        label 'node1'
+        lable 'node1'
     }
 
     stages {
+
+        stage ('Killing the old process') {
+            steps {
+                sh 'sudo kill -9 $(lsof -i:8082 -t) || true'
+            }
+        }
 
         stage ('Deleting the current contents') {
             steps {
@@ -11,9 +17,9 @@ pipeline {
             }
         }
 
-        stage ('Killing the old process') {
+        stage ('Clone repro') {
             steps {
-                sh 'sudo kill -9 $(lsof -i:8082 -t) || true'
+                sh 'checkout scm'
             }
         }
 
