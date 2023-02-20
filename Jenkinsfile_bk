@@ -1,4 +1,4 @@
-g pipeline {
+pipeline {
     agent any
 
     tools {
