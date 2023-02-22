@@ -3,10 +3,6 @@ pipeline {
         label 'node1'
     }
 
-    options {
-        skipDefaultCheckout(true)
-    }
-
     stages {
 
         stage ('Killing the old process') {
