@@ -19,7 +19,7 @@ pipeline {
 
         stage ('Clone repro') {
             steps {
-                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/georgekcibi/spring-boot-jsp-jenkins.git'
+                git branch: 'main', changelog: false, poll: true, url: 'https://github.com/georgekcibi/spring-boot-jsp-jenkins.git'
             }
         }
 
