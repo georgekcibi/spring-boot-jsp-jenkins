@@ -1,0 +1,9 @@
+version: 0.0
+os: linux
+files:
+  - source: s3://georges3bucket/code.zip
+    destination: /home/ubuntu
+hooks:
+  ApplicationStart:
+    - location: scripts/application_start.sh
+      timeout: 180
