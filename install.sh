@@ -1,3 +1,7 @@
 #!/bin/bash
-sudo kill -9 $(lsof -i:8082 -t) || true
-cd /home/ubuntu && sudo /usr/bin/java -jar -Dserver.port=8082 target/*.jar &
+sudo systemctl stop springboot
+cd /home/ubuntu/application/spring-boot-jsp-jenkins-code-pipeline/target
+sudo rm news-v1.0.4.jar
+cd /home/ubuntu && target/*.jar
+sudo cp target/* /home/ubuntu/application/spring-boot-jsp-jenkins-code-pipeline/target
+sudo systemctl start springboot
