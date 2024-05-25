@@ -40,20 +40,7 @@ environment {
         }
     }
 
-    stage('Cleaning up') {
-        steps {
-            sh 'docker rmi $registry:$BUILD_NUMBER'
-        }
-    }
 
-    stage ('Kubernetes deployment') {
-    steps {
-        sh 'kubectl delete deployments.apps nginx-app'
-        sh 'kubectl delete services  my-service'
-        sh 'kubectl apply -f deployment.yaml'
-        sh 'kubectl apply -f service.yaml'
-    }
-   }
  }
 
 }
