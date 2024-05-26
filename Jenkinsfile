@@ -51,7 +51,7 @@ pipeline {
     }
     stage ('Kubernetes deployment') {
      steps {
-         sh 'sudo kubectl --kubeconfig=/root/kubernetes-config/k8s-1-29-1-do-0-nyc3-1716276283656-kubeconfig.yaml apply -f /root/deployment/deployment.yaml'
+         sh 'sudo kubectl --kubeconfig=/root/kubernetes-config/k8s-1-29-1-do-0-nyc3-1716276283656-kubeconfig.yaml rollout restart deployment/springboot'
         }
     }
 
