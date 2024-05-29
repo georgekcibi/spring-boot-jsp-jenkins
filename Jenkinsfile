@@ -7,17 +7,20 @@ pipeline {
      registry  = "georgekc/springboot"
     }
 
-  stages {
+  stages 
+  {
 
-    stage('Clone reprository') {
-     steps {
+     stage('Clone reprository') 
+     {
+      steps {
         checkout scm
         }
     
     }
 
 
-    stage('Build Docker Image and tag it') {
+    stage('Build Docker Image and tag it') 
+    {
      steps {
          sh 'docker build -t springboot .'
          sh 'docker tag springboot:latest $registry:latest'
@@ -43,15 +46,16 @@ pipeline {
         }
     }
 
-    stage('Cleaning up') {
-        steps {
-            sh 'docker rmi $registry:$BUILD_NUMBER'
-            sh 'docker rmi $registry:latest'
-        }
-    }
+
     stage ('Kubernetes deployment') {
      steps {
-         sh 'sudo kubectl --kubeconfig=/root/kubernetes-config/k8s-1-29-1-do-0-nyc3-1716276283656-kubeconfig.yaml rollout restart deployment/springboot'
+         sh 'sudo kubectl --kubeconfig=/root/kubernetes-config/k8s-1-29-1-do-0-nyc3-1716276283656-kubeconfig.yaml set image deployment/springboot springboot=$registry:$BUILD_NUMBER'
+        }
+    }
+
+    stage('Cleaning up') {
+        steps {
+            sh 'docker rmi $registry:latest'
         }
     }
 
